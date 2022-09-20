@@ -2,7 +2,7 @@ package com.example.todolist.service;
 
 import com.example.todolist.model.TodolistModel;
 import com.example.todolist.model.TodolistRequest;
-import com.example.todolist.service.repository.TodolistRepository;
+import com.example.todolist.repository.TodolistRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

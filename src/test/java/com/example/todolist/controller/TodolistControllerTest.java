@@ -1,4 +1,4 @@
-package com.example.todolist.web;
+package com.example.todolist.controller;
 
 import com.example.todolist.model.TodolistModel;
 import com.example.todolist.model.TodolistRequest;
@@ -42,7 +42,8 @@ class TodolistControllerTest {
     @Test
     void create() throws Exception{
         // title만 request로 받아오고 나머지는 expected에 설정한 값 사용
-        when(this.todoService.add(any(TodolistRequest.class))).then((i) -> {
+        when(this.todoService.add(any(TodolistRequest.class)))
+                .then((i) -> {
                     TodolistRequest request = i.getArgument(0, TodolistRequest.class);
                     return new TodolistModel(
                             this.expected.getId(),

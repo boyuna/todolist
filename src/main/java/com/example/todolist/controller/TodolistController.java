@@ -1,11 +1,10 @@
-package com.example.todolist.web;
+package com.example.todolist.controller;
 
 import com.example.todolist.model.TodolistModel;
 import com.example.todolist.model.TodolistRequest;
 import com.example.todolist.model.TodolistResponse;
 import com.example.todolist.service.TodolistService;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Slf4j
+
 @CrossOrigin
 @AllArgsConstructor
 @RestController

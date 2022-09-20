@@ -2,7 +2,7 @@ package com.example.todolist.service;
 
 import com.example.todolist.model.TodolistModel;
 import com.example.todolist.model.TodolistRequest;
-import com.example.todolist.service.repository.TodolistRepository;
+import com.example.todolist.repository.TodolistRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.AdditionalAnswers;
@@ -33,7 +33,8 @@ class TodolistServiceTest {
     void add() {
 
         // TodolistRepository가 save 메소드를 호출해서 TodolistEntity의 값을 받으면, 받은 Entity 값 반환
-        when(this.todolistRepository.save(any(TodolistModel.class))).then(AdditionalAnswers.returnsFirstArg());
+        when(this.todolistRepository.save(any(TodolistModel.class)))
+                .then(AdditionalAnswers.returnsFirstArg());
 
         TodolistRequest expected = new TodolistRequest();
         expected.setTitle("Test Title");
