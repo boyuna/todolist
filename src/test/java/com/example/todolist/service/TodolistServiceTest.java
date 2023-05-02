@@ -1,7 +1,7 @@
 package com.example.todolist.service;
 
-import com.example.todolist.model.TodolistModel;
-import com.example.todolist.model.TodolistRequest;
+import com.example.todolist.domain.TodolistEntity;
+import com.example.todolist.dto.TodolistRequest;
 import com.example.todolist.repository.TodolistRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,13 +33,13 @@ class TodolistServiceTest {
     void add() {
 
         // TodolistRepository가 save 메소드를 호출해서 TodolistEntity의 값을 받으면, 받은 Entity 값 반환
-        when(this.todolistRepository.save(any(TodolistModel.class)))
+        when(this.todolistRepository.save(any(TodolistEntity.class)))
                 .then(AdditionalAnswers.returnsFirstArg());
 
         TodolistRequest expected = new TodolistRequest();
         expected.setTitle("Test Title");
 
-        TodolistModel actual = this.todolistService.add(expected);
+        TodolistEntity actual = this.todolistService.add(expected);
 
         assertEquals(expected.getTitle(), actual.getTitle());
     }
@@ -47,19 +47,19 @@ class TodolistServiceTest {
     @Test
     void searchById() {
         // findById는 optional을 반환하기에 옵션널로 리턴값 넣기
-        TodolistModel entity = new TodolistModel();
+        TodolistEntity entity = new TodolistEntity();
         entity.setId(123L);
         entity.setTitle("TITLE");
         entity.setOrder(0L);
         entity.setCompleted(false);
-        Optional<TodolistModel> optional = Optional.of(entity);
+        Optional<TodolistEntity> optional = Optional.of(entity);
 
         // 어떠한 id값이 주어졌을 때 optional 값을 리턴
         given(this.todolistRepository.findById(anyLong())).willReturn(optional);
 
         // service에서 searchById를 했을 때 받은 값과 optional 값을 비교
-        TodolistModel actual = this.todolistService.searchById(123L);
-        TodolistModel expected =optional.get();
+        TodolistEntity actual = this.todolistService.searchById(123L);
+        TodolistEntity expected =optional.get();
         assertEquals(expected.getId(), actual.getId());
         assertEquals(expected.getTitle(), actual.getTitle());
         assertEquals(expected.getOrder(), actual.getOrder());

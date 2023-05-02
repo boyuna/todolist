@@ -1,7 +1,7 @@
 package com.example.todolist.controller;
 
-import com.example.todolist.model.TodolistModel;
-import com.example.todolist.model.TodolistRequest;
+import com.example.todolist.domain.TodolistEntity;
+import com.example.todolist.dto.TodolistRequest;
 import com.example.todolist.service.TodolistService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,12 +27,12 @@ class TodolistControllerTest {
     @MockBean
     TodolistService todoService;
 
-    private TodolistModel expected;
+    private TodolistEntity expected;
 
     // 테스트 진행 전 expected의 값 초기화
     @BeforeEach
     void setup() {
-        this.expected = new TodolistModel();
+        this.expected = new TodolistEntity();
         this.expected.setId(123L);
         this.expected.setTitle("TEST TITLE");
         this.expected.setOrder(0L);
@@ -45,7 +45,7 @@ class TodolistControllerTest {
         when(this.todoService.add(any(TodolistRequest.class)))
                 .then((i) -> {
                     TodolistRequest request = i.getArgument(0, TodolistRequest.class);
-                    return new TodolistModel(
+                    return new TodolistEntity(
                             this.expected.getId(),
                             request.getTitle(),
                             this.expected.getOrder(),

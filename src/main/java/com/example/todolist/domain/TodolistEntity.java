@@ -1,4 +1,4 @@
-package com.example.todolist.model;
+package com.example.todolist.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class TodolistModel {
+public class TodolistEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
